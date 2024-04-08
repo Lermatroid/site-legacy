@@ -9,10 +9,16 @@ export default function Home() {
 	return (
 		<>
 			<main className="relative min-h-screen font-gsans">
-				<div className="absolute flex justify-around items-center font-gmono w-[325px] h-[50px] bg-black border-white border rounded-full top-5 left-5 px-5">
-					<Link href="/projects">Projects</Link>
-					<Link href="/about">About</Link>
-					<Link href="/contact">Contact</Link>
+				<div className="absolute z-50 flex justify-around items-center font-gmono w-[325px] h-[50px] bg-black border-white border rounded-full top-5 left-5 px-5">
+					<Link href="/#projects" className="cursor-pointer hover:underline">
+						Projects
+					</Link>
+					<Link href="/#about" className="cursor-pointer hover:underline">
+						About
+					</Link>
+					<Link href="/contact" className="cursor-pointer hover:underline">
+						Contact
+					</Link>
 				</div>
 				<div className="absolute flex flex-col justify-center gap-y-2 top-[50%] right-0 w-[40vw] h-[50vh]">
 					<h1 className="text-6xl font-black font-gmono">Liam Murray</h1>
@@ -20,7 +26,7 @@ export default function Home() {
 				</div>
 				<Wave />
 			</main>
-			<section className="h-screen w-screen p-10">
+			<section className="h-screen w-screen p-10" id="about">
 				<div className="w-full h-full p-10 pt-80 pb-40 flex flex-col justify-center gap-y-10">
 					<h1 className="font-gmono font-black text-white text-8xl">About</h1>
 					<div className="grid grid-cols-2 w-full gap-x-4">
@@ -29,7 +35,7 @@ export default function Home() {
 								Hey there!
 								<br />
 								<br />
-								My name's Liam. I'm a sofware enginner based out of San Antonio. I'm
+								My name's Liam. I'm a sofware engineer based out of San Antonio. I'm
 								currently studying Computer Science at the University of Texas at
 								San Antonio while working on the side as a freelance software
 								engineer. During my freetime I enjoy playing games, working on side

@@ -86,7 +86,10 @@ export default function ProjectsViewer() {
 				<div className="bg-neutral-400 h-full w-full"></div>
 				<div className="bg-neutral-200 h-full w-full"></div>
 			</div>
-			<section className="min-h-screen w-screen bg-white overflow-hidden relative px-20 py-40 text-black">
+			<section
+				className="min-h-screen w-screen bg-white overflow-hidden relative px-20 py-40 text-black"
+				id="projects"
+			>
 				<h1 className="font-gsans font-black text-black text-8xl">Experience</h1>
 				<p className="font-gmono pt-5 text-xl">
 					Various <span className="bg-black text-white p-1">places</span> and{" "}
