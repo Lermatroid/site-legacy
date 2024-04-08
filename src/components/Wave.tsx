@@ -117,9 +117,8 @@ function Shapes() {
 
 export default function Wave() {
 	return (
-		<div className="absolute w-screen h-screen">
-			{" "}
-			<div className="relative w-screen h-screen">
+		<div className="absolute w-screen">
+			<div className="relative w-screen min-h-screen max-w-screen overflow-x-clip overflow-y-visible">
 				<div className="absolute top-0 w-screen h-screen -rotate-[36deg] scale-x-150">
 					<WavyBackground
 						backgroundFill="transparent"
@@ -137,7 +136,7 @@ export default function Wave() {
 						<Shapes />
 					</Canvas>
 				</div>
-			</div>{" "}
+			</div>
 		</div>
 	);
 }
