@@ -31,3 +31,14 @@ body::before {
 	background-size: 40px 40px;
 	background-position: -19px -19px;
 }
+
+html {
+	--scroll-behavior: smooth !important;
+	scroll-behavior: smooth !important;
+}
+
+smoothDiv {
+	-webkit-transition: height 0.25s ease;
+	-moz-transition: height 0.25s ease;
+	transition: height 0.25s ease;
+}

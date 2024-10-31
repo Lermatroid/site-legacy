@@ -144,6 +144,14 @@ export default function ProjectsViewer() {
 					</div>
 				</div>
 			</section>
+			<div className="h-[20vh] w-screen grid grid-cols-1 grid-rows-5">
+				<div className="bg-neutral-200 h-full w-full"></div>
+				<div className="bg-neutral-400 h-full w-full"></div>
+				<div className="bg-neutral-600 h-full w-full"></div>
+				<div className="bg-neutral-800 h-full w-full"></div>
+				<div className="bg-neutral-900 h-full w-full"></div>
+				<div className="bg-gradient-to-b from-transparent to-transparent h-full w-full"></div>
+			</div>
 		</>
 	);
 }

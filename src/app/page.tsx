@@ -50,6 +50,12 @@ export default function Home() {
 				</div>
 			</section>
 			<ProjectsViewer />
+			<section className="w-screen p-10 bg-black grid grid-cols-2">
+				<div className="min-h-screen flex items-center justify-center">
+					<h1 className="font-black font-mono text-7xl">Writings</h1>
+				</div>
+				<div className="min-h-screen flex items-center justify-center"></div>
+			</section>
 		</>
 	);
 }
