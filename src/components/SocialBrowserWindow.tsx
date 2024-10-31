@@ -4,6 +4,7 @@ import { useId } from "react";
 import Link from "next/link";
 import { useState } from "react";
 import { cn } from "@/utils/cn";
+import Image from "next/image";
 
 interface SocialBrowserWindowProps {
 	children: React.ReactNode;
@@ -117,12 +118,19 @@ export default function SocialWrapper() {
 				<Linkedin size={60} color="white" />
 			</SocialBrowserWindow>
 			<SocialBrowserWindow
-				url="https://twitter.com/lermatroid"
+				url="https://bsky.app/profile/liam.so"
 				index={indexes[2]}
 				onDragStartCallback={() => onDragStart(2)}
 				className="top-[25%]"
 			>
-				<Twitter size={60} color="white" />
+				<Image
+					className="invert"
+					src="/img/bsky.webp"
+					alt="Bluesky"
+					width={60}
+					height={60}
+					priority
+				/>
 			</SocialBrowserWindow>
 			<SocialBrowserWindow
 				url="https://instagram.com/lermatroid"
