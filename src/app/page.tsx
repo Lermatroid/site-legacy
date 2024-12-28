@@ -9,7 +9,7 @@ export default function Home() {
 	return (
 		<>
 			<main className="relative min-h-screen font-gsans">
-				<div className="absolute z-50 flex justify-around items-center font-gmono w-[325px] h-[50px] bg-black border-white border rounded-full top-5 left-5 px-5">
+				<div className="fixed z-50 flex justify-around items-center font-gmono w-[325px] h-[50px] bg-black border-white border rounded-full top-5 left-5 px-5">
 					<Link href="/#projects" className="cursor-pointer hover:underline">
 						Projects
 					</Link>

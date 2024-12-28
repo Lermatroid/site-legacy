@@ -2,7 +2,7 @@
 import { X as CloseIcon, Minus, Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import { useId } from "react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 
@@ -29,6 +29,7 @@ function SocialBrowserWindow({
 	startingPos,
 }: SocialBrowserWindowProps) {
 	const id = useId();
+	const nodeRef = useRef<HTMLDivElement>(null!) as React.RefObject<HTMLDivElement>; // TODO: Make this better. Weird fix for the type error. Hopefully this gets better as React 19 matures.
 
 	return (
 		<Draggable
@@ -36,6 +37,7 @@ function SocialBrowserWindow({
 			bounds="parent"
 			onStart={() => onDragStartCallback()}
 			defaultPosition={startingPos}
+			nodeRef={nodeRef}
 		>
 			<div
 				className={cn(
@@ -43,6 +45,7 @@ function SocialBrowserWindow({
 					className
 				)}
 				style={{ zIndex: index }}
+				ref={nodeRef}
 			>
 				<div
 					className={`h-[30px] w-full border-b-white border-b flex items-center justify-end gap-x-1 p-1 cursor-grab ${id.replaceAll(

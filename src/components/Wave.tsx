@@ -1,24 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import {
-	Box,
-	Plane,
-	Outlines,
-	Sphere,
-	Tube,
-	Cylinder,
-	GradientTexture,
-	Cone,
-	Edges,
-	Icosahedron,
-	Polyhedron,
-} from "@react-three/drei";
 import * as THREE from "three";
+import React, { useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Box, Cylinder, Edges, Polyhedron } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
-import vertexShader from "@/shaders/vertexShader";
-import fragmentShader from "@/shaders/fragmentShader";
 import { WavyBackground } from "@/components/ui/wavy-bg";
 
 const AnimatedBox = animated(Box);
