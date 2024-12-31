@@ -48,3 +48,29 @@ smoothDiv {
 	-moz-transition: height 0.25s ease;
 	transition: height 0.25s ease;
 }
+
+.scrollbar-none {
+	scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+	display: none;
+}
+
+.scrollbar-none * {
+	scrollbar-width: none;
+}
+
+.scrollbar-none *::-webkit-scrollbar {
+	display: none;
+}
+
+@keyframes soundwave {
+	0%,
+	100% {
+		transform: scaleY(0.6);
+	}
+	50% {
+		transform: scaleY(1);
+	}
+}

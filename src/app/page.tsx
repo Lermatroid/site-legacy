@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Wave from "@/components/Wave";
 import Image from "next/image";
+import { Github, Linkedin, Instagram } from "lucide-react";
+import GitHubCalendar from "react-github-calendar";
+import SpotifyBubble from "@/components/spotify-bubble";
 
 export default function Home() {
 	return (
@@ -36,10 +39,79 @@ export default function Home() {
 						my freetime I enjoy playing games, working on side projects, and walking.
 					</p>
 				</div>
-				<div className="row-span-3 col-start-3 rounded-2xl bg-zinc-950 p-5">
-					<p className="font-mono font-bold text-md leading-normal">Projects</p>
+				<div className="col-span-2 col-start-1 row-start-3 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
+					<p className="font-mono font-bold text-md leading-normal">On The Internet @</p>
+					<div className="flex gap-x-10 justify-center items-center px-5">
+						<Link href="https://github.com/lermatroid" target="_blank">
+							<Github
+								size={50}
+								color="white"
+								className="hover:opacity-80 transition-opacity"
+							/>
+						</Link>
+						<Link href="https://www.linkedin.com/in/liamrmurray/" target="_blank">
+							<Linkedin
+								size={50}
+								color="white"
+								className="hover:opacity-80 transition-opacity"
+							/>
+						</Link>
+						<Link href="https://bsky.app/profile/liam.so" target="_blank">
+							<Image
+								className="invert hover:opacity-80 transition-opacity"
+								src="/img/bsky.webp"
+								alt="Bluesky"
+								width={50}
+								height={50}
+								priority
+							/>
+						</Link>
+						<Link href="https://instagram.com/lermatroid" target="_blank">
+							<Instagram
+								size={50}
+								color="white"
+								className="hover:opacity-80 transition-opacity"
+							/>
+						</Link>
+					</div>
+					<Link
+						href="/links"
+						className="font-mono font-bold text-md leading-normal self-end hover:underline"
+					>
+						Links &rArr;
+					</Link>
 				</div>
-				<div className="row-span-3 col-start-4 rounded-2xl bg-zinc-950 p-5">4</div>
+				<div className="col-start-3 row-start-1 rounded-2xl bg-zinc-950 p-5 flex flex-col items-center justify-center">
+					<p className="font-mono font-bold text-2xl leading-normal text-center">
+						{"Projects </>"}
+					</p>
+				</div>
+				<div className="col-start-3 row-start-2 rounded-2xl bg-zinc-950 p-5 flex items-center justify-center">
+					<Image
+						alt="The HackKit Logo"
+						src={"/img/projects/hackkit.png"}
+						width={100}
+						height={100}
+					/>
+				</div>
+				<div className="col-start-4 row-start-2 rounded-2xl bg-zinc-950 p-5">5</div>
+				<div className="col-span-2 col-start-3 row-start-3 rounded-2xl bg-zinc-950 p-5 scrollbar-none flex flex-col items-center justify-center">
+					<GitHubCalendar
+						hideTotalCount={true}
+						colorScheme="dark"
+						username="lermatroid"
+						blockSize={9}
+					/>
+				</div>
+				<div className="col-start-4 row-start-1 rounded-2xl bg-zinc-950 p-5 flex-col flex gap-y-4 items-center justify-center">
+					<Image
+						alt="The HackKit Logo"
+						src={"/img/projects/hackkit.png"}
+						width={100}
+						height={100}
+					/>
+					<p className="font-mono font-bold text-lg leading-normal">HackKit</p>
+				</div>
 				<div className="col-span-2 col-start-3 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
 					<p className="font-mono font-bold text-md leading-normal">Previously @</p>
 					<div className="flex gap-x-2 justify-around items-center px-5">
@@ -71,12 +143,8 @@ export default function Home() {
 						Resume &rArr;
 					</Link>
 				</div>
-				<div className="row-span-2 col-start-2 row-start-3 rounded-2xl bg-zinc-950 p-5">
-					6
-				</div>
-				<div className="row-span-2 col-start-1 row-start-3 rounded-2xl bg-zinc-950 p-5">
-					7
-				</div>
+				<div className="col-start-1 row-start-4 rounded-2xl bg-zinc-950 p-5">10</div>
+				<SpotifyBubble />
 			</section>
 			{/* <section className="h-screen w-screen p-10" id="about">
 				<div className="w-full h-full p-10 pt-80 pb-40 flex flex-col justify-center gap-y-10">
