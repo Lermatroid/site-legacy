@@ -72,6 +72,9 @@ importers:
       react-draggable:
         specifier: ^4.4.6
         version: 4.4.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-github-calendar:
+        specifier: ^4.5.2
+        version: 4.5.2(react@19.0.0)
       react-type-animation:
         specifier: ^3.2.0
         version: 3.2.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -118,6 +121,9 @@ importers:
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
+      tailwindcss-motion:
+        specifier: ^1.0.0
+        version: 1.0.0(tailwindcss@3.4.17)
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -952,6 +958,9 @@ packages:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
     engines: {node: '>= 12'}
 
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
+
   debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
 
@@ -1488,6 +1497,11 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  react-activity-calendar@2.7.5:
+    resolution: {integrity: sha512-sVXqN4wDsjrwdjCJfgrOYP8Q6o8HfMV+lmxn4GQz4gacOwQNXIC9y0Obs5EqNifqZVJqnGSV1dLmPNWFKw4OLA==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+
   react-composer@5.0.3:
     resolution: {integrity: sha512-1uWd07EME6XZvMfapwZmc7NgCZqDemcvicRi3wMJzXsQLvZ3L7fTHVyPy1bZdnWXM4iPjYuNE+uJ41MLKeTtnA==}
     peerDependencies:
@@ -1509,6 +1523,16 @@ packages:
     peerDependencies:
       react: '>= 16.3.0'
       react-dom: '>= 16.3.0'
+
+  react-error-boundary@4.1.2:
+    resolution: {integrity: sha512-GQDxZ5Jd+Aq/qUxbCm1UtzmL/s++V7zKgE8yMktJiCQXCCFZnMZh9ng+6/Ne6PjNSXH0L9CjeOEREfRnq6Duag==}
+    peerDependencies:
+      react: '>=16.13.1'
+
+  react-github-calendar@4.5.2:
+    resolution: {integrity: sha512-QgX21sjB5+aLWMDQELtZZOQtcoBW9IuPZSf84PBuUwbByfcQLvzLttlQFemC/EmLJ3pRX0YxjYVoM01hxQ9isw==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -1681,6 +1705,11 @@ packages:
 
   tailwindcss-animate@1.0.7:
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+
+  tailwindcss-motion@1.0.0:
+    resolution: {integrity: sha512-Bc8XJxiSGjup0NHsph4OBGXXFfmbInFUhvVVluKPScQD1R2kDQTZIODqumsI/lONryeTpDdKzwuuw1a99Z38bQ==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
 
@@ -2515,6 +2544,8 @@ snapshots:
 
   data-uri-to-buffer@4.0.1: {}
 
+  date-fns@4.1.0: {}
+
   debounce@1.2.1: {}
 
   debug@4.4.0:
@@ -2962,6 +2993,11 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
+  react-activity-calendar@2.7.5(react@19.0.0):
+    dependencies:
+      date-fns: 4.1.0
+      react: 19.0.0
+
   react-composer@5.0.3(react@19.0.0):
     dependencies:
       prop-types: 15.8.1
@@ -2983,6 +3019,17 @@ snapshots:
       prop-types: 15.8.1
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
+
+  react-error-boundary@4.1.2(react@19.0.0):
+    dependencies:
+      '@babel/runtime': 7.26.0
+      react: 19.0.0
+
+  react-github-calendar@4.5.2(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-activity-calendar: 2.7.5(react@19.0.0)
+      react-error-boundary: 4.1.2(react@19.0.0)
 
   react-is@16.13.1: {}
 
@@ -3151,6 +3198,10 @@ snapshots:
   tailwind-merge@2.6.0: {}
 
   tailwindcss-animate@1.0.7(tailwindcss@3.4.17):
+    dependencies:
+      tailwindcss: 3.4.17
+
+  tailwindcss-motion@1.0.0(tailwindcss@3.4.17):
     dependencies:
       tailwindcss: 3.4.17
 
