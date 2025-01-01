@@ -6,6 +6,8 @@ import GitHubCalendar from "react-github-calendar";
 import SpotifyBubble from "@/components/spotify-bubble";
 import { Suspense } from "react";
 
+export const experimental_ppr = true;
+
 export default async function Home() {
 	return (
 		<>
