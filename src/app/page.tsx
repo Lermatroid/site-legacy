@@ -6,7 +6,7 @@ import GitHubCalendar from "react-github-calendar";
 import SpotifyBubble from "@/components/spotify-bubble";
 import { Suspense } from "react";
 
-export default function Home() {
+export default async function Home() {
 	return (
 		<>
 			<main className="relative min-h-screen font-gsans">
