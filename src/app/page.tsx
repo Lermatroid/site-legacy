@@ -147,7 +147,7 @@ export default async function Home() {
 					</Link>
 				</div>
 				<div className="col-start-1 row-start-4 rounded-2xl bg-zinc-950 p-5">10</div>
-				<Suspense>
+				<Suspense fallback={<div>Loading...</div>}>
 					<SpotifyBubble />
 				</Suspense>
 			</section>
