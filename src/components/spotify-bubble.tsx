@@ -2,9 +2,10 @@ import { getNowPlayingItem } from "@/lib/spotify-api";
 import { Unplug } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { unstable_cache } from "next/cache";
+import { createCache } from "@/lib/cache";
 
-const getCachedNowPlaying = unstable_cache(async () => getNowPlayingItem(), ["now-playing"], {
+const getCachedNowPlaying = createCache(async () => getNowPlayingItem(), {
+	key: "now-playing",
 	revalidate: 30,
 });
 
