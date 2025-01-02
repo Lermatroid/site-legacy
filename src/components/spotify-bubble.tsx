@@ -5,7 +5,7 @@ import Link from "next/link";
 import { unstable_cache } from "next/cache";
 
 const getCachedNowPlaying = unstable_cache(async () => getNowPlayingItem(), ["now-playing"], {
-	revalidate: 60,
+	revalidate: 30,
 });
 
 export default async function SpotifyBubble() {
