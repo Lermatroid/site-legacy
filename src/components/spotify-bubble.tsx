@@ -2,9 +2,15 @@ import { getNowPlayingItem } from "@/lib/spotify-api";
 import { Unplug } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_cache } from "next/cache";
+
+const getCachedNowPlaying = unstable_cache(async () => getNowPlayingItem(), ["now-playing"], {
+	revalidate: 60,
+});
 
 export default async function SpotifyBubble() {
-	const nowPlaying = await getNowPlayingItem();
+	const nowPlaying = await getCachedNowPlaying();
+
 	if (!nowPlaying) {
 		return (
 			<div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-center items-center gap relative">
