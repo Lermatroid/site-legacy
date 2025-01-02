@@ -19,7 +19,9 @@ const getAccessToken = async () => {
 			grant_type: "refresh_token",
 			refresh_token,
 		}).toString(),
-		cache: "no-store",
+		next: {
+			revalidate: 30,
+		},
 	});
 
 	return response.json();
@@ -31,7 +33,9 @@ export const getNowPlaying = async () => {
 		headers: {
 			Authorization: `Bearer ${access_token}`,
 		},
-		cache: "no-store",
+		next: {
+			revalidate: 30,
+		},
 	});
 };
 

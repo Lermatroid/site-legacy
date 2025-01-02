@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { createCache } from "@/lib/cache";
 
-const getCachedNowPlaying = createCache(async () => getNowPlayingItem(), {
-	key: "now-playing",
-	revalidate: 30,
-});
+// const getCachedNowPlaying = createCache(async () => getNowPlayingItem(), {
+// 	key: "now-playing",
+// 	revalidate: 30,
+// });
 
 export default async function SpotifyBubble() {
-	const nowPlaying = await getCachedNowPlaying();
+	const nowPlaying = await getNowPlayingItem();
 
 	if (!nowPlaying) {
 		return (
