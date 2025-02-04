@@ -3,6 +3,7 @@ import { Unplug } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { createCache } from "@/lib/cache";
+import SpotifyBubbleClient from "./spotify-bubble-client";
 
 const getCachedNowPlaying = createCache(async () => getNowPlayingItem(), {
   key: "now-playing",
@@ -12,28 +13,25 @@ const getCachedNowPlaying = createCache(async () => getNowPlayingItem(), {
 export default async function SpotifyBubble() {
   const { payload: nowPlaying } = await getCachedNowPlaying();
 
-  if (!nowPlaying) {
-    return (
-      <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-center items-center gap relative">
-        <p className="font-mono font-bold text-md leading-normal absolute left-0 top-0 pt-5 pl-5">
-          Now Playing
-        </p>
+  const content = !nowPlaying ? (
+    <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-center items-center gap relative">
+      <p className="font-mono font-bold text-md leading-normal absolute left-0 top-0 pt-5 pl-5">
+        Now Playing
+      </p>
 
-        <div className="h-[40px] w-full absolute bottom-0 left-0 pl-5 pb-5 flex items-center gap-x-1">
-          <p className="leading-[20px] font-mono text-sm">Offline </p>{" "}
-          <Unplug size={15} />
-        </div>
-        <Image
-          src="/img/other/spotify.png"
-          alt="Spotify Icon"
-          className="absolute bottom-0 right-0 pr-5 pb-5 invert z-50"
-          width={40}
-          height={40}
-        />
+      <div className="h-[40px] w-full absolute bottom-0 left-0 pl-5 pb-5 flex items-center gap-x-1">
+        <p className="leading-[20px] font-mono text-sm">Offline </p>{" "}
+        <Unplug size={15} />
       </div>
-    );
-  }
-  return (
+      <Image
+        src="/img/other/spotify.png"
+        alt="Spotify Icon"
+        className="absolute bottom-0 right-0 pr-5 pb-5 invert z-50"
+        width={40}
+        height={40}
+      />
+    </div>
+  ) : (
     <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-start gap relative">
       <p className="font-mono font-bold text-md leading-normal absolute right-0 top-0 pt-5 pr-5">
         Now Playing{" "}
@@ -66,4 +64,6 @@ export default async function SpotifyBubble() {
       </Link>
     </div>
   );
+
+  return <SpotifyBubbleClient>{content}</SpotifyBubbleClient>;
 }
