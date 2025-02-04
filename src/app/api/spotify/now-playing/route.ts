@@ -27,3 +27,5 @@ export async function GET() {
     nextRefreshIn: remainingTime + 5, // Add 5 second buffer
   });
 }
+
+export const runtime = "edge";
