@@ -29,7 +29,7 @@ export default function SpotifyBubble() {
       // Schedule next refresh based on the response
       setTimeout(() => {
         fetchNowPlaying();
-      }, newData.nextRefreshIn * 1000);
+      }, Math.min(newData.nextRefreshIn, 20) * 1000);
     } catch (error) {
       console.error("Failed to fetch now playing:", error);
       // Retry after 30 seconds on error
