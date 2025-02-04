@@ -1,7 +1,7 @@
 "use client";
 
 import { Unplug } from "lucide-react";
-import Image from "next/image";
+import NextImage from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -19,6 +19,7 @@ type NowPlayingResponse = {
 export default function SpotifyBubble() {
   const [data, setData] = useState<NowPlayingResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [dominantColor, setDominantColor] = useState<string | null>(null);
 
   const fetchNowPlaying = async () => {
     try {
@@ -45,6 +46,41 @@ export default function SpotifyBubble() {
     fetchNowPlaying();
   }, []);
 
+  useEffect(() => {
+    if (data?.isPlaying && data.track?.albumImageUrl) {
+      // Create a temporary image to analyze
+      const img = new window.Image();
+      img.crossOrigin = "anonymous";
+      img.src = data.track.albumImageUrl;
+
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d") as CanvasRenderingContext2D | null;
+
+        if (!ctx) {
+          console.error("Could not get canvas context");
+          return;
+        }
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        ctx.drawImage(img, 0, 0);
+
+        // Get the pixel data from the center of the image
+        const imageData = ctx.getImageData(
+          img.width / 2,
+          img.height / 2,
+          1,
+          1
+        ).data;
+
+        const color = `rgb(${imageData[0]}, ${imageData[1]}, ${imageData[2]})`;
+        setDominantColor(color);
+      };
+    }
+  }, [data?.track?.albumImageUrl]);
+
   if (loading) {
     return (
       <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5">
@@ -64,7 +100,7 @@ export default function SpotifyBubble() {
           <p className="leading-[20px] font-mono text-sm">Offline </p>{" "}
           <Unplug size={15} />
         </div>
-        <Image
+        <NextImage
           src="/img/other/spotify.png"
           alt="Spotify Icon"
           className="absolute bottom-0 right-0 pr-5 pb-5 invert z-50"
@@ -76,7 +112,14 @@ export default function SpotifyBubble() {
   }
 
   return (
-    <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-start gap relative">
+    <div
+      className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-start gap relative overflow-hidden"
+      style={{
+        background: dominantColor
+          ? `linear-gradient(to bottom right, ${dominantColor}, rgba(24, 24, 27, 1))`
+          : undefined,
+      }}
+    >
       <p className="font-mono font-bold text-md leading-normal absolute right-0 top-0 pt-5 pr-5">
         Now Playing{" "}
         <span className="inline-flex gap-1">
@@ -86,7 +129,7 @@ export default function SpotifyBubble() {
         </span>
       </p>
 
-      <Image
+      <NextImage
         src={data.track!.albumImageUrl}
         alt="Album Art"
         width={100}
@@ -98,7 +141,7 @@ export default function SpotifyBubble() {
       </div>
 
       <Link href={data.track!.songUrl} target="_blank">
-        <Image
+        <NextImage
           src="/img/other/spotify.png"
           alt="Spotify Icon"
           className="absolute bottom-0 right-0 pr-5 pb-5 invert z-50"
