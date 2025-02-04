@@ -124,7 +124,7 @@ export default async function Home() {
         </div>
         <div className="col-span-2 col-start-3 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
           <p className="font-mono font-bold text-md leading-normal">
-            Previously @
+            Experience
           </p>
           <div className="flex gap-x-2 justify-around items-center px-5">
             <Image
@@ -160,9 +160,6 @@ export default async function Home() {
             Resume &rArr;
           </Link>
         </div>
-        {/* <div className="col-start-1 row-start-4 rounded-2xl bg-zinc-950 p-5">
-          10
-        </div> */}
         <Suspense fallback={<div>Loading...</div>}>
           <SteamBubble />
         </Suspense>

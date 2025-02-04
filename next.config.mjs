@@ -47,6 +47,11 @@ const nextConfig = {
         destination: "https://linkedin.com/in/liamrmurray",
         permanent: false,
       },
+      {
+        source: "/resume",
+        destination: "https://fs.liam.so/Liam%20Murray%20Resume%202024.pdf",
+        permanent: false,
+      },
     ];
   },
   images: {
