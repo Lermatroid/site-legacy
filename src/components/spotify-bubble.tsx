@@ -1,37 +1,81 @@
-import { getNowPlayingItem } from "@/lib/spotify-api";
+"use client";
+
 import { Unplug } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { createCache } from "@/lib/cache";
-import SpotifyBubbleClient from "./spotify-bubble-client";
+import { useEffect, useState } from "react";
 
-const getCachedNowPlaying = createCache(async () => getNowPlayingItem(), {
-  key: "now-playing",
-  revalidate: 30,
-});
+type NowPlayingResponse = {
+  isPlaying: boolean;
+  track?: {
+    title: string;
+    artist: string;
+    albumImageUrl: string;
+    songUrl: string;
+  };
+  nextRefreshIn: number;
+};
 
-export default async function SpotifyBubble() {
-  const { payload: nowPlaying } = await getCachedNowPlaying();
+export default function SpotifyBubble() {
+  const [data, setData] = useState<NowPlayingResponse | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const content = !nowPlaying ? (
-    <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-center items-center gap relative">
-      <p className="font-mono font-bold text-md leading-normal absolute left-0 top-0 pt-5 pl-5">
-        Now Playing
-      </p>
+  const fetchNowPlaying = async () => {
+    try {
+      const response = await fetch("/api/spotify/now-playing");
+      const newData: NowPlayingResponse = await response.json();
+      setData(newData);
 
-      <div className="h-[40px] w-full absolute bottom-0 left-0 pl-5 pb-5 flex items-center gap-x-1">
-        <p className="leading-[20px] font-mono text-sm">Offline </p>{" "}
-        <Unplug size={15} />
+      // Schedule next refresh based on the response
+      setTimeout(() => {
+        fetchNowPlaying();
+      }, newData.nextRefreshIn * 1000);
+    } catch (error) {
+      console.error("Failed to fetch now playing:", error);
+      // Retry after 30 seconds on error
+      setTimeout(() => {
+        fetchNowPlaying();
+      }, 30000);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchNowPlaying();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5">
+        Loading...
       </div>
-      <Image
-        src="/img/other/spotify.png"
-        alt="Spotify Icon"
-        className="absolute bottom-0 right-0 pr-5 pb-5 invert z-50"
-        width={40}
-        height={40}
-      />
-    </div>
-  ) : (
+    );
+  }
+
+  if (!data?.isPlaying) {
+    return (
+      <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-center items-center gap relative">
+        <p className="font-mono font-bold text-md leading-normal absolute left-0 top-0 pt-5 pl-5">
+          Now Playing
+        </p>
+
+        <div className="h-[40px] w-full absolute bottom-0 left-0 pl-5 pb-5 flex items-center gap-x-1">
+          <p className="leading-[20px] font-mono text-sm">Offline </p>{" "}
+          <Unplug size={15} />
+        </div>
+        <Image
+          src="/img/other/spotify.png"
+          alt="Spotify Icon"
+          className="absolute bottom-0 right-0 pr-5 pb-5 invert z-50"
+          width={40}
+          height={40}
+        />
+      </div>
+    );
+  }
+
+  return (
     <div className="col-start-2 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-start gap relative">
       <p className="font-mono font-bold text-md leading-normal absolute right-0 top-0 pt-5 pr-5">
         Now Playing{" "}
@@ -43,17 +87,17 @@ export default async function SpotifyBubble() {
       </p>
 
       <Image
-        src={nowPlaying.albumImageUrl}
+        src={data.track!.albumImageUrl}
         alt="Album Art"
         width={100}
         height={100}
       />
       <div className="pt-2">
-        <p className="font-bold">{nowPlaying.title}</p>
-        <p className="text-sm">{nowPlaying.artist}</p>
+        <p className="font-bold">{data.track!.title}</p>
+        <p className="text-sm">{data.track!.artist}</p>
       </div>
 
-      <Link href={nowPlaying.songUrl} target="_blank">
+      <Link href={data.track!.songUrl} target="_blank">
         <Image
           src="/img/other/spotify.png"
           alt="Spotify Icon"
@@ -64,6 +108,4 @@ export default async function SpotifyBubble() {
       </Link>
     </div>
   );
-
-  return <SpotifyBubbleClient>{content}</SpotifyBubbleClient>;
 }
