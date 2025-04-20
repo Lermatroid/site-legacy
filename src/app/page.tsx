@@ -29,20 +29,56 @@ export default async function Home() {
         <Wave />
       </main>
       <section
-        className="min-h-[calc(100vh+16rem)] grid grid-cols-4 grid-rows-4 gap-4 w-screen p-10 pt-80"
+        className="min-h-screen max-w-screen-lg mx-auto w-full p-10 pt-80 flex flex-col"
         id="about"
       >
-        <div className="col-span-2 row-span-2 rounded-2xl p-5 flex flex-col justify-center">
+        <h1 className="font-black font-mono text-5xl">Hey there 👋</h1>
+        <p className="font-mono font-bold text-md leading-relaxed pt-5 text-start text-balance max-w-[600px]">
+          I'm Liam, a sofware engineer based out of San Antonio. I'm currently
+          studying Computer Science at the University of Texas at San Antonio
+          while working on the side as a freelance software engineer. In August,
+          I'll be joining Google as a SWE in Seattle. During my freetime I enjoy
+          playing games, working on side projects, and walking.
+        </p>
+      </section>
+      <section
+        className="min-h-[calc(100vh+16rem)] grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 auto-rows-[205px] gap-4 w-screen p-10 pt-80"
+        id="about"
+      >
+        <div className="md:col-span-2 col-span-1 row-span-2 rounded-2xl p-5 flex flex-col justify-center">
           <h1 className="font-black font-mono text-5xl">Hey there 👋</h1>
           <p className="font-mono font-bold text-md leading-normal pt-5">
-            My name's Liam. I'm a sofware engineer based out of San Antonio. I'm
-            currently studying Computer Science at the University of Texas at
-            San Antonio while working on the side as a freelance software
+            I'm name's Liam. I'm a sofware engineer based out of San Antonio.
+            I'm currently studying Computer Science at the University of Texas
+            at San Antonio while working on the side as a freelance software
             engineer. During my freetime I enjoy playing games, working on side
             projects, and walking.
           </p>
         </div>
-        <div className="col-span-2 col-start-1 row-start-3 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
+        <div className="rounded-2xl bg-zinc-950 p-5 flex flex-col items-center justify-center">
+          <p className="font-mono font-bold text-2xl leading-normal text-center">
+            {"Projects </>"}
+          </p>
+        </div>
+        <div className="rounded-2xl bg-zinc-950 p-5 flex-col flex gap-y-4 items-center justify-center">
+          <Image
+            alt="The HackKit Logo"
+            src={"/img/projects/hackkit.png"}
+            width={100}
+            height={100}
+          />
+          <p className="font-mono font-bold text-lg leading-normal">HackKit</p>
+        </div>
+        <div className="rounded-2xl bg-zinc-950 p-5 flex items-center justify-center">
+          <Image
+            alt="The HackKit Logo"
+            src={"/img/projects/hackkit.png"}
+            width={100}
+            height={100}
+          />
+        </div>
+        <div className="rounded-2xl bg-zinc-950 p-5">5</div>
+        <div className="md:col-span-2 col-span-1 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
           <p className="font-mono font-bold text-md leading-normal">
             On The Internet @
           </p>
@@ -89,23 +125,7 @@ export default async function Home() {
             Links &rArr;
           </Link>
         </div>
-        <div className="col-start-3 row-start-1 rounded-2xl bg-zinc-950 p-5 flex flex-col items-center justify-center">
-          <p className="font-mono font-bold text-2xl leading-normal text-center">
-            {"Projects </>"}
-          </p>
-        </div>
-        <div className="col-start-3 row-start-2 rounded-2xl bg-zinc-950 p-5 flex items-center justify-center">
-          <Image
-            alt="The HackKit Logo"
-            src={"/img/projects/hackkit.png"}
-            width={100}
-            height={100}
-          />
-        </div>
-        <div className="col-start-4 row-start-2 rounded-2xl bg-zinc-950 p-5">
-          5
-        </div>
-        <div className="col-span-2 col-start-3 row-start-3 rounded-2xl bg-zinc-950 p-5 scrollbar-none flex flex-col items-center justify-center">
+        <div className="md:col-span-2 col-span-1 rounded-2xl bg-zinc-950 p-5 scrollbar-none flex flex-col items-center justify-center">
           <GitHubCalendar
             hideTotalCount={true}
             colorScheme="dark"
@@ -113,16 +133,14 @@ export default async function Home() {
             blockSize={9}
           />
         </div>
-        <div className="col-start-4 row-start-1 rounded-2xl bg-zinc-950 p-5 flex-col flex gap-y-4 items-center justify-center">
-          <Image
-            alt="The HackKit Logo"
-            src={"/img/projects/hackkit.png"}
-            width={100}
-            height={100}
-          />
-          <p className="font-mono font-bold text-lg leading-normal">HackKit</p>
-        </div>
-        <div className="col-span-2 col-start-3 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
+
+        <Suspense fallback={<div className="aspect-video">Loading...</div>}>
+          <SteamBubble />
+        </Suspense>
+        <Suspense fallback={<div className="aspect-video">Loading...</div>}>
+          <SpotifyBubble />
+        </Suspense>
+        <div className="md:col-span-2 col-span-1 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
           <p className="font-mono font-bold text-md leading-normal">
             Experience
           </p>
@@ -160,12 +178,6 @@ export default async function Home() {
             Resume &rArr;
           </Link>
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <SteamBubble />
-        </Suspense>
-        <Suspense fallback={<div>Loading...</div>}>
-          <SpotifyBubble />
-        </Suspense>
       </section>
     </>
   );

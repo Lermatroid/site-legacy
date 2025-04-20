@@ -37,16 +37,12 @@ export default function SteamBubble() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="col-start-1 row-start-4 rounded-2xl bg-zinc-950 p-5">
-        Loading...
-      </div>
-    );
+    return <div className="rounded-2xl bg-zinc-950 p-5 ">Loading...</div>;
   }
 
   if (!data) {
     return (
-      <div className="col-start-1 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-center items-center gap relative">
+      <div className="rounded-2xl bg-zinc-950 p-5 flex flex-col justify-center items-center gap relative ">
         <p className="font-mono font-bold text-md leading-normal absolute left-0 top-0 pt-5 pl-5">
           Recently Played
         </p>
@@ -73,7 +69,7 @@ export default function SteamBubble() {
     hours > 0 ? `${hours}h ${minutes}m played` : `${minutes}m played`;
 
   return (
-    <div className="col-start-1 row-start-4 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-start gap relative overflow-hidden">
+    <div className="rounded-2xl bg-zinc-950 p-5 flex flex-col justify-start gap relative overflow-hidden ">
       <Link
         href={`https://store.steampowered.com/app/${data.appid}`}
         target="_blank"
