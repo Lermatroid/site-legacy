@@ -1,61 +1,184 @@
 import Link from "next/link";
 import Wave from "@/components/Wave";
-import SocialBrowserWindow from "@/components/SocialBrowserWindow";
-import { Github, Linkedin } from "lucide-react";
-import SocialWrapper from "@/components/SocialBrowserWindow";
-import ProjectsViewer from "@/components/ProjectsViewer";
+import Image from "next/image";
+import { Github, Linkedin, Instagram } from "lucide-react";
+import GitHubCalendar from "react-github-calendar";
+import SpotifyBubble from "@/components/spotify-bubble";
+import { Suspense } from "react";
+import SteamBubble from "@/components/steam-bubble";
 
-export default function Home() {
-	return (
-		<>
-			<main className="relative min-h-screen font-gsans">
-				<div className="fixed z-50 flex justify-around items-center font-gmono w-[325px] h-[50px] bg-black border-white border rounded-full top-5 left-5 px-5">
-					<Link href="/#projects" className="cursor-pointer hover:underline">
-						Projects
-					</Link>
-					<Link href="/#about" className="cursor-pointer hover:underline">
-						About
-					</Link>
-					<Link href="/contact" className="cursor-pointer hover:underline">
-						Contact
-					</Link>
-				</div>
-				<div className="absolute flex flex-col justify-center gap-y-2 top-[50%] right-0 w-[40vw] h-[50vh]">
-					<h1 className="text-6xl font-black font-gmono">Liam Murray</h1>
-					<p className="font-gmono">Building Stuffs On The Internet</p>
-				</div>
-				<Wave />
-			</main>
-			<section className="h-screen w-screen p-10" id="about">
-				<div className="w-full h-full p-10 pt-80 pb-40 flex flex-col justify-center gap-y-10">
-					<h1 className="font-gmono font-black text-white text-8xl">About</h1>
-					<div className="grid grid-cols-2 w-full gap-x-4">
-						<div className="rounded-xl border-white border bg-black w-full aspect-video p-5 flex items-center">
-							<p className="font-mono font-bold text-xl leading-normal">
-								Hey there!
-								<br />
-								<br />
-								My name's Liam. I'm a sofware engineer based out of San Antonio. I'm
-								currently studying Computer Science at the University of Texas at
-								San Antonio while working on the side as a freelance software
-								engineer. During my freetime I enjoy playing games, working on side
-								projects, and walking.
-								<br />
-								<br />
-								You can find me around the internet over here &rArr;
-							</p>
-						</div>
-						<SocialWrapper />
-					</div>
-				</div>
-			</section>
-			<ProjectsViewer />
-			<section className="w-screen p-10 bg-black grid grid-cols-2">
-				<div className="min-h-screen flex items-center justify-center">
-					<h1 className="font-black font-mono text-7xl">Writings</h1>
-				</div>
-				<div className="min-h-screen flex items-center justify-center"></div>
-			</section>
-		</>
-	);
+export default async function Home() {
+  return (
+    <>
+      <main className="relative min-h-screen font-gsans">
+        <div className="fixed z-50 flex justify-around items-center font-gmono w-[325px] h-[50px] bg-black border-white border rounded-full top-5 left-5 px-5">
+          <Link href="/#projects" className="cursor-pointer hover:underline">
+            Projects
+          </Link>
+          <Link href="/#about" className="cursor-pointer hover:underline">
+            About
+          </Link>
+          <Link href="/contact" className="cursor-pointer hover:underline">
+            Contact
+          </Link>
+        </div>
+        <div className="absolute flex flex-col justify-center gap-y-2 top-[50%] right-0 w-[40vw] h-[50vh]">
+          <h1 className="text-6xl font-black font-gmono">Liam Murray</h1>
+          <p className="font-gmono">Building Stuffs On The Internet</p>
+        </div>
+        <Wave />
+      </main>
+      <section
+        className="min-h-screen max-w-screen-lg mx-auto w-full p-10 pt-80 flex flex-col"
+        id="about"
+      >
+        <h1 className="font-black font-mono text-5xl">Hey there 👋</h1>
+        <p className="font-mono font-bold text-md leading-relaxed pt-5 text-start text-balance max-w-[600px]">
+          I'm Liam, a sofware engineer based out of San Antonio. I'm currently
+          studying Computer Science at the University of Texas at San Antonio
+          while working on the side as a freelance software engineer. In August,
+          I'll be joining Google as a SWE in Seattle. During my freetime I enjoy
+          playing games, working on side projects, and walking.
+        </p>
+      </section>
+      <section
+        className="min-h-[calc(100vh+16rem)] grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 auto-rows-[205px] gap-4 w-screen p-10 pt-80"
+        id="about"
+      >
+        <div className="md:col-span-2 col-span-1 row-span-2 rounded-2xl p-5 flex flex-col justify-center">
+          <h1 className="font-black font-mono text-5xl">Hey there 👋</h1>
+          <p className="font-mono font-bold text-md leading-normal pt-5">
+            I'm name's Liam. I'm a sofware engineer based out of San Antonio.
+            I'm currently studying Computer Science at the University of Texas
+            at San Antonio while working on the side as a freelance software
+            engineer. During my freetime I enjoy playing games, working on side
+            projects, and walking.
+          </p>
+        </div>
+        <div className="rounded-2xl bg-zinc-950 p-5 flex flex-col items-center justify-center">
+          <p className="font-mono font-bold text-2xl leading-normal text-center">
+            {"Projects </>"}
+          </p>
+        </div>
+        <div className="rounded-2xl bg-zinc-950 p-5 flex-col flex gap-y-4 items-center justify-center">
+          <Image
+            alt="The HackKit Logo"
+            src={"/img/projects/hackkit.png"}
+            width={100}
+            height={100}
+          />
+          <p className="font-mono font-bold text-lg leading-normal">HackKit</p>
+        </div>
+        <div className="rounded-2xl bg-zinc-950 p-5 flex items-center justify-center">
+          <Image
+            alt="The HackKit Logo"
+            src={"/img/projects/hackkit.png"}
+            width={100}
+            height={100}
+          />
+        </div>
+        <div className="rounded-2xl bg-zinc-950 p-5">5</div>
+        <div className="md:col-span-2 col-span-1 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
+          <p className="font-mono font-bold text-md leading-normal">
+            On The Internet @
+          </p>
+          <div className="flex gap-x-10 justify-center items-center px-5">
+            <Link href="https://github.com/lermatroid" target="_blank">
+              <Github
+                size={50}
+                color="white"
+                className="hover:opacity-80 transition-opacity"
+              />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/liamrmurray/"
+              target="_blank"
+            >
+              <Linkedin
+                size={50}
+                color="white"
+                className="hover:opacity-80 transition-opacity"
+              />
+            </Link>
+            <Link href="https://bsky.app/profile/liam.so" target="_blank">
+              <Image
+                className="invert hover:opacity-80 transition-opacity"
+                src="/img/bsky.webp"
+                alt="Bluesky"
+                width={50}
+                height={50}
+                priority
+              />
+            </Link>
+            <Link href="https://instagram.com/lermatroid" target="_blank">
+              <Instagram
+                size={50}
+                color="white"
+                className="hover:opacity-80 transition-opacity"
+              />
+            </Link>
+          </div>
+          <Link
+            href="/links"
+            className="font-mono font-bold text-md leading-normal self-end hover:underline"
+          >
+            Links &rArr;
+          </Link>
+        </div>
+        <div className="md:col-span-2 col-span-1 rounded-2xl bg-zinc-950 p-5 scrollbar-none flex flex-col items-center justify-center">
+          <GitHubCalendar
+            hideTotalCount={true}
+            colorScheme="dark"
+            username="lermatroid"
+            blockSize={9}
+          />
+        </div>
+
+        <Suspense fallback={<div className="aspect-video">Loading...</div>}>
+          <SteamBubble />
+        </Suspense>
+        <Suspense fallback={<div className="aspect-video">Loading...</div>}>
+          <SpotifyBubble />
+        </Suspense>
+        <div className="md:col-span-2 col-span-1 rounded-2xl bg-zinc-950 p-5 flex flex-col justify-between">
+          <p className="font-mono font-bold text-md leading-normal">
+            Experience
+          </p>
+          <div className="flex gap-x-2 justify-around items-center px-5">
+            <Image
+              src="/img/exp/googlecolor.png"
+              alt="Google Icon"
+              height={100}
+              width={100}
+            />
+            <Image
+              src="/img/exp/karat.jpeg"
+              alt="Karat Icon"
+              height={100}
+              width={100}
+            />
+            <Image
+              src="/img/exp/acm.png"
+              className="object-contain"
+              alt="ACM Icon"
+              height={100}
+              width={100}
+            />
+            <Image
+              src="/img/exp/utsa.png"
+              alt="ACM Icon"
+              height={100}
+              width={100}
+            />
+          </div>
+          <Link
+            href="/resume"
+            className="font-mono font-bold text-md leading-normal self-end hover:underline"
+          >
+            Resume &rArr;
+          </Link>
+        </div>
+      </section>
+    </>
+  );
 }
